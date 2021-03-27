@@ -3,7 +3,8 @@ setlocal enabledelayedexpansion
 echo Syncing Lastest Version From OneDrive
 %LOCALAPPDATA%\Microsoft\OneDrive\OneDrive.exe /shutdown
 start %LOCALAPPDATA%\Microsoft\OneDrive\OneDrive.exe
-timeout 45
+echo Waiting For Syncing To Complete
+ping -n 44 127.0.0.1 >nul
 
 
 set /a argCount=1
@@ -12,8 +13,7 @@ for %%x in ( %* ) do (
         set destinationFolder="%%x"
         cd /d !destinationFolder!
         git pull
-    ) 
-    ELSE (
+    ) ELSE (
         echo Copying    %%x      to the GitHub Directory !destinationFolder!
         xcopy /s "%OneDrive%\%%x" /y /z
 
