@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 echo Syncing Lastest Version From OneDrive
 %LOCALAPPDATA%\Microsoft\OneDrive\OneDrive.exe /shutdown
 start %LOCALAPPDATA%\Microsoft\OneDrive\OneDrive.exe
-pause
+timeout 45
 
 
 set /a argCount=1
